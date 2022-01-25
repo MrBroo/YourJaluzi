@@ -1,5 +1,8 @@
 package byfayzullayev.jaluzi.service;
 
+import byfayzullayev.jaluzi.model.receive.UserSignInReceiveModel;
+import byfayzullayev.jaluzi.model.receive.UserSignUpReceiveModel;
+import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.repository.RoleRepository;
 import byfayzullayev.jaluzi.repository.UserRepository;
 import byfayzullayev.jaluzi.service.base.BaseService;
@@ -21,4 +24,7 @@ public class UserService implements BaseService {
         this.roleRepository = roleRepository;
         this.objectMapper = objectMapper;
     }
+public ApiResponse addUser(UserSignUpReceiveModel userSignUpReceiveModel){
+
+}
 }
