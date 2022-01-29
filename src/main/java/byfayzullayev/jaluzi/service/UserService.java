@@ -1,5 +1,7 @@
 package byfayzullayev.jaluzi.service;
 
+import byfayzullayev.jaluzi.entity.role.RoleEnam;
+import byfayzullayev.jaluzi.entity.user.UserEntity;
 import byfayzullayev.jaluzi.model.receive.UserSignInReceiveModel;
 import byfayzullayev.jaluzi.model.receive.UserSignUpReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
@@ -9,6 +11,9 @@ import byfayzullayev.jaluzi.service.base.BaseService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements BaseService {
@@ -24,7 +29,36 @@ public class UserService implements BaseService {
         this.roleRepository = roleRepository;
         this.objectMapper = objectMapper;
     }
-public ApiResponse addUser(UserSignUpReceiveModel userSignUpReceiveModel){
 
-}
+    public ApiResponse addUser(UserSignUpReceiveModel userSignUpReceiveModel) {
+        Optional<UserEntity> optionalUserEntity = userRepository.findByUsername(userSignUpReceiveModel.getUsername());
+        if (optionalUserEntity.isPresent())
+            return USER_EXIST;
+
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(userSignUpReceiveModel.getUsername());
+        userEntity.setPassword(passwordEncoder.encode(userSignUpReceiveModel.getPassword()));
+
+        if (userSignUpReceiveModel.getRoleEnam() == null)
+            userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(RoleEnam.USER)));
+        else
+            userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(userSignUpReceiveModel.getRoleEnam())));
+        userRepository.save(userEntity);
+        return SUCCESS;
+    }
+
+    public ApiResponse login(
+UserSignInReceiveModel userSignInReceiveModel
+    ){
+Optional<UserEntity> optionalUserEntity = userRepository.findByUsername(userSignInReceiveModel.getUsername());
+if (optionalUserEntity.isEmpty())
+    return USER_NOT_FOUND;
+
+
+
+
+
+
+    }
+
 }
