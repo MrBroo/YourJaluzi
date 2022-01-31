@@ -9,14 +9,24 @@ import byfayzullayev.jaluzi.repository.RoleRepository;
 import byfayzullayev.jaluzi.repository.UserRepository;
 import byfayzullayev.jaluzi.service.base.BaseService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService implements BaseService {
+
+    @Value("${jwt.secret}")
+    private String jwtSecretKey;
+    @Value("${jwt.expiry.date}")
+    private String jwtExpiryDate;
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -48,17 +58,27 @@ public class UserService implements BaseService {
     }
 
     public ApiResponse login(
-UserSignInReceiveModel userSignInReceiveModel
-    ){
-Optional<UserEntity> optionalUserEntity = userRepository.findByUsername(userSignInReceiveModel.getUsername());
-if (optionalUserEntity.isEmpty())
-    return USER_NOT_FOUND;
-
-
-
-
+            UserSignInReceiveModel userSignInReceiveModel
+    ) {
+        Optional<UserEntity> optionalUserEntity = userRepository.findByUsername(userSignInReceiveModel.getUsername());
+        if (optionalUserEntity.isEmpty())
+            return USER_NOT_FOUND;
+        String token = this.generateToken(optionalUserEntity.get());
+        SUCCESS.setData(token);
+        return SUCCESS;
 
 
     }
 
+    private String generateToken(UserEntity userEntity) {
+        try {
+            return Jwts.builder().signWith(SignatureAlgorithm.HS512, jwtSecretKey)
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(jwtExpiryDate)))
+                    .setSubject(userEntity.getUsername())
+                    .compact();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
