@@ -1,22 +1,18 @@
-package byfayzullayev.jaluzi.entity.product;
+package byfayzullayev.jaluzi.entity.portfolio;
 
 import byfayzullayev.jaluzi.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
-@Entity
+import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductShortEntity extends BaseEntity {
-    private String imageUrl;
+@Entity
+public class PortfolioEntity extends BaseEntity {
     private String name;
-    private String price;
+    private String image;
+    private Integer date;
     private String category;
-
-
-
 }

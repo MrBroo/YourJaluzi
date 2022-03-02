@@ -17,7 +17,8 @@ public class ProductEntity extends BaseEntity {
     private String imageUrl;
     private String name;
     private String price;
-    private String bio;
+    private String about;
+    private String category;
 
     @OneToOne(fetch = FetchType.LAZY)
     private ProductShortEntity productShortEntity;

@@ -77,10 +77,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
             httpServletResponse.getOutputStream().write(new ObjectMapper().writeValueAsBytes(new ApiResponse("token vaqti o`tib keti", false, 401)));
         }
-        catch
-        (Exception e){
-            e.printStackTrace();
-        }
+//        catch
+//        (Exception e){
+//            e.printStackTrace();
+//        }
     }
 }
 
