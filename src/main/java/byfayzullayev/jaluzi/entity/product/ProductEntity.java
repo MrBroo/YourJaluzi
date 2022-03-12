@@ -4,9 +4,7 @@ import byfayzullayev.jaluzi.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 
 @Data
@@ -20,7 +18,7 @@ public class ProductEntity extends BaseEntity {
     private String about;
     private String category;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private ProductShortEntity productShortEntity;
 
 }
