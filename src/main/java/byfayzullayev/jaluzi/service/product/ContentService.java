@@ -1,8 +1,4 @@
 package byfayzullayev.jaluzi.service.product;
 
-public class ProductService {
-
-    
-
-
+public class ContentService {
 }
