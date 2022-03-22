@@ -46,16 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .addFilterBefore(jwtTokenFilter, BasicAuthenticationFilter.class)
-                .authorizeRequests()
-                .antMatchers("/api/sololearn/user/*").permitAll()
-                .antMatchers("/api/sololearn/course/list").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/sololearn/course/chapter/*").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     }
 
