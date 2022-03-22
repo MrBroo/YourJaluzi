@@ -1,4 +1,4 @@
-package byfayzullayev.jaluzi.model.receive;
+package byfayzullayev.jaluzi.model.receive.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

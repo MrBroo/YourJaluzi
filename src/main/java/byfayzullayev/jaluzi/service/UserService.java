@@ -2,8 +2,8 @@ package byfayzullayev.jaluzi.service;
 
 import byfayzullayev.jaluzi.entity.role.RoleEnam;
 import byfayzullayev.jaluzi.entity.user.UserEntity;
-import byfayzullayev.jaluzi.model.receive.UserSignInReceiveModel;
-import byfayzullayev.jaluzi.model.receive.UserSignUpReceiveModel;
+import byfayzullayev.jaluzi.model.receive.user.UserSignInReceiveModel;
+import byfayzullayev.jaluzi.model.receive.user.UserSignUpReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.repository.RoleRepository;
 import byfayzullayev.jaluzi.repository.UserRepository;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package byfayzullayev.jaluzi.model.receive;
+package byfayzullayev.jaluzi.model.receive.user;
 
 
 import byfayzullayev.jaluzi.entity.role.RoleEnam;
