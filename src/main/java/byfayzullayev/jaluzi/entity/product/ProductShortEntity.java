@@ -15,9 +15,10 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 
 public class ProductShortEntity extends BaseEntity {
-    private String imageUrl;
     private String name;
+    private String imageUrl;
     private String price;
+    private String sunProtection;
     private String category;
 
     @ManyToOne

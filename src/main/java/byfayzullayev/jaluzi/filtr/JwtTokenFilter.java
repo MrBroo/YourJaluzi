@@ -2,7 +2,7 @@ package byfayzullayev.jaluzi.filtr;
 
 import byfayzullayev.jaluzi.entity.user.UserEntity;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
-import byfayzullayev.jaluzi.service.ApplicationUserDetailService;
+import byfayzullayev.jaluzi.service.user.ApplicationUserDetailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

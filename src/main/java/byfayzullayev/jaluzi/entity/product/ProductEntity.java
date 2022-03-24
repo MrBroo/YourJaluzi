@@ -12,9 +12,10 @@ import javax.persistence.OneToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductEntity extends BaseEntity {
-    private String imageUrl;
     private String name;
+    private String imageUrl;
     private String price;
+    private String sunProtection;
     private String about;
     private String category;
 

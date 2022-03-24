@@ -1,22 +1,15 @@
 package byfayzullayev.jaluzi.model.receive.product;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class ProductReceiveModel {
+public class ProductShortReceiveModel {
     private String name;
     private String base64;
     private String price;
     private String sunProtection;
-    private String about;
     private String contentType;
-    @JsonProperty("productShort_id")
-    private long productShortId;
-
-
-
+    @JsonProperty("category_id")
+    private long categoryId;
 }

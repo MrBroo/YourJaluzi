@@ -1,4 +1,4 @@
-package byfayzullayev.jaluzi.service;
+package byfayzullayev.jaluzi.service.user;
 
 import byfayzullayev.jaluzi.entity.role.RoleEnam;
 import byfayzullayev.jaluzi.entity.user.UserEntity;

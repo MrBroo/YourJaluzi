@@ -3,16 +3,13 @@ package byfayzullayev.jaluzi.entity.user;
 import byfayzullayev.jaluzi.entity.BaseEntity;
 import byfayzullayev.jaluzi.entity.role.RoleEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-
 import java.util.Collection;
 import java.util.List;
 

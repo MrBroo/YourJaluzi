@@ -1,7 +1,7 @@
 package byfayzullayev.jaluzi.config;
 
 import byfayzullayev.jaluzi.entity.user.UserEntity;
-import byfayzullayev.jaluzi.service.ApplicationUserDetailService;
+import byfayzullayev.jaluzi.service.user.ApplicationUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
