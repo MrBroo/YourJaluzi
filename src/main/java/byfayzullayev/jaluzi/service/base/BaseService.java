@@ -11,6 +11,7 @@ public interface BaseService {
     ApiResponse ERROR_CATEGORY_NOT_FOUND = new ApiResponse(" category bo'lim topilmadi",false,-101);
     ApiResponse ERROR_PRODUCT_NOT_FOUND = new ApiResponse(" product topilmadi", false, -101);
     ApiResponse ERROR_FILE_CREATE = new ApiResponse("rasm saqlashda xatolik, base64 tekshir", false, -101);
+    ApiResponse ERROR_DELETE = new ApiResponse("rasm saqlashda xatolik, base64 tekshir", false, -101);
 }
 
 

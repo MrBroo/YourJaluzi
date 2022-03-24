@@ -11,6 +11,7 @@ import byfayzullayev.jaluzi.service.base.BaseService;
 import byfayzullayev.jaluzi.service.file.FileService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,7 +33,7 @@ public class ProductService implements BaseService {
 
     public ApiResponse addProduct(
             ProductReceiveModel productReceiveModel
-    ){
+    ) {
         String imageUrl = fileService.saveFile(productReceiveModel.getBase64(), productReceiveModel.getContentType());
         if (imageUrl == null)
             return ERROR_FILE_CREATE;
@@ -51,6 +52,31 @@ public class ProductService implements BaseService {
         productRepository.save(productEntity);
 
         return SUCCESS_V2;
+    }
+
+    public ApiResponse getProductList() {
+        SUCCESS.setData(productRepository.findAll());
+        return SUCCESS;
+    }
+
+    public ApiResponse getProductList(long id) {
+        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
+        if (optionalProductShortEntity.isEmpty())
+            return ERROR_CATEGORY_NOT_FOUND;
+        List<ProductEntity> productEntityList = productRepository.findByProductShortEntity(id);
+        SUCCESS.setData(productEntityList);
+        return SUCCESS;
+    }
+
+    public ApiResponse deleteProduct(long id) {
+        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
+        if (optionalProductShortEntity.isEmpty())
+            return ERROR_CATEGORY_NOT_FOUND;
+        Optional<ProductEntity> optionalProductEntity = productRepository.findById(id);
+        if (optionalProductEntity.isPresent())
+            productRepository.deleteById(id);
+        return SUCCESS_V2;
+
     }
 
 }

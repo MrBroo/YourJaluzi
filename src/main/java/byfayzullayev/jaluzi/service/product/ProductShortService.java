@@ -10,6 +10,7 @@ import byfayzullayev.jaluzi.service.base.BaseService;
 import byfayzullayev.jaluzi.service.file.FileService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,7 +28,7 @@ public class ProductShortService implements BaseService {
 
     public ApiResponse addProductShort(
             ProductShortReceiveModel productShortReceiveModel
-    ){
+    ) {
         Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(productShortReceiveModel.getCategoryId());
         if (optionalCategoryEntity.isEmpty())
             return ERROR_CATEGORY_NOT_FOUND;
@@ -48,4 +49,33 @@ public class ProductShortService implements BaseService {
 
 
     }
+
+    public ApiResponse getProductShortList() {
+        SUCCESS.setData(productShortRepository.findAll());
+        return SUCCESS;
+    }
+
+    public ApiResponse getProductShortList(long categoryId) {
+        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(categoryId);
+
+        if (optionalCategoryEntity.isEmpty())
+            return ERROR_CATEGORY_NOT_FOUND;
+        List<ProductShortEntity> productShortEntityList = productShortRepository.findByCategoryId(categoryId);
+        SUCCESS.setData(productShortEntityList);
+        return SUCCESS;
+
+
+    }
+
+
+    public ApiResponse deleteProductShort(long id) {
+        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
+        if (optionalCategoryEntity.isEmpty())
+            return ERROR_CATEGORY_NOT_FOUND;
+        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
+        if (optionalProductShortEntity.isPresent())
+            productShortRepository.deleteById(id);
+        return SUCCESS_V2;
+    }
+
 }
