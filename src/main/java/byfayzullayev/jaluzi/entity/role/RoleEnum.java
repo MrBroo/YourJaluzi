@@ -1,7 +1,7 @@
 package byfayzullayev.jaluzi.entity.role;
 
-public enum RoleEnam {
+public enum RoleEnum {
     USER,
     ADMIN,
-    SUPERADMIN
+    SUPER_ADMIN
 }

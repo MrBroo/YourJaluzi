@@ -24,7 +24,7 @@ public class ProductShortEntity extends BaseEntity {
     @ManyToOne
     private CategoryEntity categoryEntity;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "productShortEntity")
     private ProductEntity productEntity;
 
 

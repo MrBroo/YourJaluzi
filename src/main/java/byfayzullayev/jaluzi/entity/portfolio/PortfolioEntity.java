@@ -14,5 +14,4 @@ public class PortfolioEntity extends BaseEntity {
     private String name;
     private String image;
     private Integer date;
-    private String category;
 }

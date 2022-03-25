@@ -1,6 +1,6 @@
 package byfayzullayev.jaluzi.service.user;
 
-import byfayzullayev.jaluzi.entity.role.RoleEnam;
+import byfayzullayev.jaluzi.entity.role.RoleEnum;
 import byfayzullayev.jaluzi.entity.user.UserEntity;
 import byfayzullayev.jaluzi.model.receive.user.UserSignInReceiveModel;
 import byfayzullayev.jaluzi.model.receive.user.UserSignUpReceiveModel;
@@ -49,7 +49,7 @@ public class UserService implements BaseService {
         userEntity.setPassword(passwordEncoder.encode(userSignUpReceiveModel.getPassword()));
 
         if (userSignUpReceiveModel.getRoleEnam() == null)
-            userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(RoleEnam.USER)));
+            userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(RoleEnum.USER)));
         else
             userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(userSignUpReceiveModel.getRoleEnam())));
         userRepository.save(userEntity);

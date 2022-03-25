@@ -6,7 +6,6 @@ import byfayzullayev.jaluzi.model.receive.product.ProductReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.repository.ProductRepository;
 import byfayzullayev.jaluzi.repository.ProductShortRepository;
-import byfayzullayev.jaluzi.repository.UrlOrTextRepository;
 import byfayzullayev.jaluzi.service.base.BaseService;
 import byfayzullayev.jaluzi.service.file.FileService;
 import org.springframework.stereotype.Service;
@@ -20,15 +19,15 @@ public class ProductService implements BaseService {
     private final CurrentUser currentUser;
     private final ProductShortRepository productShortRepository;
     private final FileService fileService;
-    private final UrlOrTextRepository urlOrTextRepository;
 
 
-    public ProductService(ProductRepository productRepository, CurrentUser currentUser, ProductShortRepository productShortRepository, FileService fileService, UrlOrTextRepository urlOrTextRepository) {
+
+    public ProductService(ProductRepository productRepository, CurrentUser currentUser, ProductShortRepository productShortRepository, FileService fileService) {
         this.productRepository = productRepository;
         this.currentUser = currentUser;
         this.productShortRepository = productShortRepository;
         this.fileService = fileService;
-        this.urlOrTextRepository = urlOrTextRepository;
+
     }
 
     public ApiResponse addProduct(

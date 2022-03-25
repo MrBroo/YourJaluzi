@@ -1,7 +1,7 @@
 package byfayzullayev.jaluzi.model.receive.user;
 
 
-import byfayzullayev.jaluzi.entity.role.RoleEnam;
+import byfayzullayev.jaluzi.entity.role.RoleEnum;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,6 +30,6 @@ public class UserSignUpReceiveModel {
     private String phoneNumber;
 
     @JsonProperty("user_role")
-    private RoleEnam roleEnam;
+    private RoleEnum roleEnam;
 
 }

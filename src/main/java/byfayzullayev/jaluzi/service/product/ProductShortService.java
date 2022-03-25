@@ -55,12 +55,12 @@ public class ProductShortService implements BaseService {
         return SUCCESS;
     }
 
-    public ApiResponse getProductShortList(long categoryId) {
-        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(categoryId);
+    public ApiResponse getProductShortList(long id) {
+        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
 
         if (optionalCategoryEntity.isEmpty())
             return ERROR_CATEGORY_NOT_FOUND;
-        List<ProductShortEntity> productShortEntityList = productShortRepository.findByCategoryId(categoryId);
+        List<ProductShortEntity> productShortEntityList = productShortRepository.findByCategoryId(id);
         SUCCESS.setData(productShortEntityList);
         return SUCCESS;
 
