@@ -1,4 +1,5 @@
 package byfayzullayev.jaluzi.service.product;
+
 import byfayzullayev.jaluzi.entity.product.CategoryEntity;
 import byfayzullayev.jaluzi.model.receive.product.CategoryReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
@@ -6,6 +7,7 @@ import byfayzullayev.jaluzi.repository.CategoryRepository;
 import byfayzullayev.jaluzi.service.base.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
@@ -32,5 +34,12 @@ public class CategoryService implements BaseService {
         return SUCCESS;
     }
 
+    public ApiResponse deleteCategory(long id) {
+        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
+        if (optionalCategoryEntity.isPresent())
+            categoryRepository.deleteById(id);
+        return SUCCESS_V2;
+
+    }
 
 }
