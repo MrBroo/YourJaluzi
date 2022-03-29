@@ -12,6 +12,6 @@ import javax.persistence.Entity;
 @Entity
 public class PortfolioEntity extends BaseEntity {
     private String name;
-    private String image;
+    private String imageUrl;
     private Integer date;
 }

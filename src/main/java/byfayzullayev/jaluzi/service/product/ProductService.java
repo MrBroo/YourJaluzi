@@ -8,6 +8,7 @@ import byfayzullayev.jaluzi.repository.ProductRepository;
 import byfayzullayev.jaluzi.repository.ProductShortRepository;
 import byfayzullayev.jaluzi.service.base.BaseService;
 import byfayzullayev.jaluzi.service.file.FileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ProductService implements BaseService {
     private final ProductShortRepository productShortRepository;
     private final FileService fileService;
 
-
+    @Autowired
     public ProductService(ProductRepository productRepository, CurrentUser currentUser, ProductShortRepository productShortRepository, FileService fileService) {
         this.productRepository = productRepository;
         this.currentUser = currentUser;
