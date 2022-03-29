@@ -19,10 +19,10 @@ public class ProductShortEntity extends BaseEntity {
     private String imageUrl;
     private String price;
     private String sunProtection;
-//    private String category;
+
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(optional = false)
     private CategoryEntity categoryEntity;
 
     @OneToOne(mappedBy = "productShortEntity")

@@ -1,20 +1,30 @@
 package byfayzullayev.jaluzi.service.product;
 
 import byfayzullayev.jaluzi.entity.product.CategoryEntity;
+import byfayzullayev.jaluzi.entity.product.ProductEntity;
+import byfayzullayev.jaluzi.entity.product.ProductShortEntity;
 import byfayzullayev.jaluzi.model.receive.product.CategoryReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.repository.CategoryRepository;
+import byfayzullayev.jaluzi.repository.ProductRepository;
+import byfayzullayev.jaluzi.repository.ProductShortRepository;
 import byfayzullayev.jaluzi.service.base.BaseService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class CategoryService implements BaseService {
 
     private final CategoryRepository categoryRepository;
+    private final ProductShortRepository productShortRepository;
+    private final ProductRepository productRepository;
+
+    public CategoryService(CategoryRepository categoryRepository, ProductShortRepository productShortRepository, ProductRepository productRepository) {
+        this.categoryRepository = categoryRepository;
+        this.productShortRepository = productShortRepository;
+        this.productRepository = productRepository;
+    }
 
     public ApiResponse addCategory(CategoryReceiveModel categoryReceiveModel) {
         String category = "qq";
@@ -36,10 +46,15 @@ public class CategoryService implements BaseService {
 
     public ApiResponse deleteCategory(long id) {
         Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
-        if (optionalCategoryEntity.isPresent())
+        if (optionalCategoryEntity.isPresent()) {
             categoryRepository.deleteById(id);
-        return SUCCESS;
+            Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
+            if (optionalProductShortEntity.isPresent())
+            productShortRepository.deleteById(id);
 
+            return SUCCESS;
+        }
+        return ERROR_DELETE;
     }
 
 }

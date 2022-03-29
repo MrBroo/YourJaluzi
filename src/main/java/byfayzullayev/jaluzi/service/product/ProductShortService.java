@@ -1,10 +1,12 @@
 package byfayzullayev.jaluzi.service.product;
 
 import byfayzullayev.jaluzi.entity.product.CategoryEntity;
+import byfayzullayev.jaluzi.entity.product.ProductEntity;
 import byfayzullayev.jaluzi.entity.product.ProductShortEntity;
 import byfayzullayev.jaluzi.model.receive.product.ProductShortReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.repository.CategoryRepository;
+import byfayzullayev.jaluzi.repository.ProductRepository;
 import byfayzullayev.jaluzi.repository.ProductShortRepository;
 import byfayzullayev.jaluzi.service.base.BaseService;
 import byfayzullayev.jaluzi.service.file.FileService;
@@ -18,12 +20,14 @@ public class ProductShortService implements BaseService {
     private final ProductShortRepository productShortRepository;
     private final CategoryRepository categoryRepository;
     private final FileService fileService;
+    private final ProductRepository productRepository;
 
 
-    public ProductShortService(ProductShortRepository productShortRepository, CategoryRepository categoryRepository, FileService fileService) {
+    public ProductShortService(ProductShortRepository productShortRepository, CategoryRepository categoryRepository, FileService fileService, ProductRepository productRepository) {
         this.productShortRepository = productShortRepository;
         this.categoryRepository = categoryRepository;
         this.fileService = fileService;
+        this.productRepository = productRepository;
     }
 
     public ApiResponse addProductShort(
@@ -64,18 +68,25 @@ public class ProductShortService implements BaseService {
         SUCCESS.setData(productShortEntityList);
         return SUCCESS;
 
-
     }
 
 
     public ApiResponse deleteProductShort(long id) {
-        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
-        if (optionalCategoryEntity.isEmpty())
-            return ERROR_CATEGORY_NOT_FOUND;
-        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
-        if (optionalProductShortEntity.isPresent())
-            productShortRepository.deleteById(id);
-        return SUCCESS_V2;
-    }
+//        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
+//        if (optionalCategoryEntity.isEmpty())
+//            return ERROR_CATEGORY_NOT_FOUND;
 
+        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
+        if (optionalProductShortEntity.isPresent()) {
+            productShortRepository.deleteById(id);
+            Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
+            if (optionalCategoryEntity.isPresent())
+            categoryRepository.deleteById(id);
+
+            return SUCCESS_V2;
+        }
+        return ERROR_DELETE;
+    }
 }
+
+

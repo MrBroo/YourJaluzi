@@ -21,7 +21,6 @@ public class ProductService implements BaseService {
     private final FileService fileService;
 
 
-
     public ProductService(ProductRepository productRepository, CurrentUser currentUser, ProductShortRepository productShortRepository, FileService fileService) {
         this.productRepository = productRepository;
         this.currentUser = currentUser;
@@ -68,14 +67,19 @@ public class ProductService implements BaseService {
     }
 
     public ApiResponse deleteProduct(long id) {
-        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
-        if (optionalProductShortEntity.isEmpty())
-            return ERROR_CATEGORY_NOT_FOUND;
-        Optional<ProductEntity> optionalProductEntity = productRepository.findById(id);
-        if (optionalProductEntity.isPresent())
-            productRepository.deleteById(id);
-        return SUCCESS_V2;
+//        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
+//        if (optionalProductShortEntity.isEmpty())
+//            return ERROR_CATEGORY_NOT_FOUND;
 
+        Optional<ProductEntity> optionalProductEntity = productRepository.findById(id);
+        if (optionalProductEntity.isPresent()) {
+            productRepository.deleteById(id);
+            Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
+            if (optionalProductShortEntity.isPresent())
+                productShortRepository.deleteById(id);
+            return SUCCESS_V2;
+        }
+        return ERROR_DELETE;
     }
 
 }

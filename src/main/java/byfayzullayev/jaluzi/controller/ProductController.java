@@ -32,7 +32,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductList());
 
     }
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     public HttpEntity<?> deleteProduct(@PathVariable("id") long id ){
         ApiResponse delete = productService.deleteProduct(id);
         return ResponseEntity.ok(delete);
