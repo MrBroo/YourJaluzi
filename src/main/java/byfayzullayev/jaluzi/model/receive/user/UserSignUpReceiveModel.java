@@ -26,10 +26,10 @@ public class UserSignUpReceiveModel {
     private String password;
 
     @JsonProperty("phone_number")
-    @NotBlank(message = "telefon raqam bo`sh bo`lishi kerakemas")
+    @NotEmpty(message = "telefon raqam bo`sh bo`lishi kerakemas")
     private String phoneNumber;
 
     @JsonProperty("user_role")
-    private RoleEnum roleEnam;
+    private RoleEnum roleEnum;
 
 }

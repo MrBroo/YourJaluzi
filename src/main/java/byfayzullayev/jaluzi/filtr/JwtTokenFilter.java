@@ -5,6 +5,7 @@ import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.service.user.ApplicationUserDetailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -46,7 +47,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         Claims claims = null;
         try {
             claims = Jwts.parser()
-                    .setSigningKey("fsdfsdjflksdrsldrjlk")
+                    .setSigningKey("rWHdVPWbqsBDDcQs0PdArBwcZLkH5yykj3l4I")
                     .parseClaimsJws(token).getBody();
 
             Date expirationDate = claims.getExpiration();
@@ -71,16 +72,14 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
             SecurityContextHolder.getContext().setAuthentication(authorization);
             filterChain.doFilter(httpServletRequest, httpServletResponse);
-        } catch (Exception e) {
+        } catch (ExpiredJwtException e) {
             httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             httpServletResponse.setContentType("application/json");
 
             httpServletResponse.getOutputStream().write(new ObjectMapper().writeValueAsBytes(new ApiResponse("token vaqti o`tib keti", false, 401)));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-//        catch
-//        (Exception e){
-//            e.printStackTrace();
-//        }
     }
 }
 

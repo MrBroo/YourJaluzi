@@ -1,7 +1,7 @@
 package byfayzullayev.jaluzi.entity.role;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,8 +18,10 @@ import javax.persistence.Id;
 @Data
 @Entity
 public class RoleEntity implements GrantedAuthority {
+
+
     @Id
-    private Long id;
+    private int id;
 
     @Enumerated(EnumType.STRING)
     private RoleEnum roleEnum;

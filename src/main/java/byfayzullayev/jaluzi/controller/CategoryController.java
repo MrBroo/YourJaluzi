@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
 @RestController
 @RequestMapping("api/yourjaluzi/category")
 public class CategoryController {
@@ -26,11 +28,12 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.addCategory(categoryReceiveModel));
 
     }
-
+    @GetMapping("/list")
     public HttpEntity<?> getCategoryList() {
         return ResponseEntity.ok(categoryService.getCategoryList());
     }
 
+    @DeleteMapping("/delete/{id}")
     public HttpEntity<?> deleteCategory(@PathVariable("id") long id) {
         ApiResponse delete = categoryService.deleteCategory(id);
         return ResponseEntity.ok(delete);

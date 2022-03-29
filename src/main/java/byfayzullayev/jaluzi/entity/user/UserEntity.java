@@ -27,7 +27,7 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private Long phoneNumber;
     private boolean active = true;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roleEntityList;
 
 

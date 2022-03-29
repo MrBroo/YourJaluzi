@@ -39,7 +39,7 @@ public class ProductShortController {
         return ResponseEntity.ok(list);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteProductShort(
             @PathVariable("id") long id
     ) {

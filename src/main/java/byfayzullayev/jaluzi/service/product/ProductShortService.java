@@ -42,7 +42,7 @@ public class ProductShortService implements BaseService {
         productShortEntity.setName(productShortReceiveModel.getName());
         productShortEntity.setImageUrl(imageUrl);
         productShortEntity.setPrice(productShortReceiveModel.getPrice());
-        productShortReceiveModel.setSunProtection(productShortReceiveModel.getSunProtection());
+        productShortEntity.setSunProtection(productShortReceiveModel.getSunProtection());
         productShortRepository.save(productShortEntity);
 
         return SUCCESS_V2;

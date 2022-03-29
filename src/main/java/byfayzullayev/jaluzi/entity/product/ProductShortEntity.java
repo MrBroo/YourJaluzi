@@ -1,11 +1,11 @@
 package byfayzullayev.jaluzi.entity.product;
 
 import byfayzullayev.jaluzi.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -19,8 +19,9 @@ public class ProductShortEntity extends BaseEntity {
     private String imageUrl;
     private String price;
     private String sunProtection;
-    private String category;
+//    private String category;
 
+    @JsonIgnore
     @ManyToOne
     private CategoryEntity categoryEntity;
 

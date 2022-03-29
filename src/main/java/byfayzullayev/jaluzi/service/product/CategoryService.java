@@ -17,9 +17,9 @@ public class CategoryService implements BaseService {
     private final CategoryRepository categoryRepository;
 
     public ApiResponse addCategory(CategoryReceiveModel categoryReceiveModel) {
-        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findByName(categoryReceiveModel.getName());
+        String category = "qq";
 
-        if (optionalCategoryEntity.isEmpty())
+        if (category.isEmpty())
             return ERROR_CATEGORY_NOT_FOUND;
 
         CategoryEntity categoryEntity = new CategoryEntity();
@@ -38,7 +38,7 @@ public class CategoryService implements BaseService {
         Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
         if (optionalCategoryEntity.isPresent())
             categoryRepository.deleteById(id);
-        return SUCCESS_V2;
+        return SUCCESS;
 
     }
 

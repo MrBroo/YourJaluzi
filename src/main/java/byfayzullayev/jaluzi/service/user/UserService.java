@@ -48,10 +48,10 @@ public class UserService implements BaseService {
         userEntity.setUsername(userSignUpReceiveModel.getUsername());
         userEntity.setPassword(passwordEncoder.encode(userSignUpReceiveModel.getPassword()));
 
-        if (userSignUpReceiveModel.getRoleEnam() == null)
+        if (userSignUpReceiveModel.getRoleEnum() == null)
             userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(RoleEnum.USER)));
         else
-            userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(userSignUpReceiveModel.getRoleEnam())));
+            userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(userSignUpReceiveModel.getRoleEnum())));
         userRepository.save(userEntity);
         return SUCCESS;
     }

@@ -1,9 +1,10 @@
 package byfayzullayev.jaluzi.entity.product;
-
 import byfayzullayev.jaluzi.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -17,8 +18,9 @@ public class ProductEntity extends BaseEntity {
     private String price;
     private String sunProtection;
     private String about;
-    private String category;
+//    private String category;
 
+    @JsonIgnore
     @OneToOne
     private ProductShortEntity productShortEntity;
 
