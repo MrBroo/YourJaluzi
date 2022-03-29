@@ -45,6 +45,7 @@ public class UserService implements BaseService {
             return USER_EXIST;
 
         UserEntity userEntity = new UserEntity();
+        userEntity.setPhoneNumber(userSignUpReceiveModel.getPhoneNumber());
         userEntity.setUsername(userSignUpReceiveModel.getUsername());
         userEntity.setPassword(passwordEncoder.encode(userSignUpReceiveModel.getPassword()));
 

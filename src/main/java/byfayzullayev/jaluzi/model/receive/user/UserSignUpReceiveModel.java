@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,8 +27,8 @@ public class UserSignUpReceiveModel {
     private String password;
 
     @JsonProperty("phone_number")
-    @NotEmpty(message = "telefon raqam bo`sh bo`lishi kerakemas")
-    private String phoneNumber;
+    @NotNull(message = "telefon raqam bo`sh bo`lishi kerakemas")
+    private Long phoneNumber;
 
     @JsonProperty("user_role")
     private RoleEnum roleEnum;
