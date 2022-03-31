@@ -57,6 +57,7 @@ public class ProductShortService implements BaseService {
     public ApiResponse getProductShortList() {
         SUCCESS.setData(productShortRepository.findAll());
         return SUCCESS;
+
     }
 
     public ApiResponse getProductShortList(long id) {
