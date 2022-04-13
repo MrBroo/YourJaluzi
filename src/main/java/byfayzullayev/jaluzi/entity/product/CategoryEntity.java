@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -19,6 +20,6 @@ public class CategoryEntity extends BaseEntity {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "categoryEntity")
+    @OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.ALL)
     private List<ProductShortEntity> productShortEntity;
 }

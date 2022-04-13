@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
 
 @Entity
 @Data
@@ -25,9 +27,7 @@ public class ProductShortEntity extends BaseEntity {
     @ManyToOne(optional = false)
     private CategoryEntity categoryEntity;
 
-    @OneToOne(mappedBy = "productShortEntity")
+    @OneToOne(mappedBy = "productShortEntity", cascade = CascadeType.ALL)
     private ProductEntity productEntity;
-
-
 
 }

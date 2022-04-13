@@ -62,22 +62,33 @@ public class ProductService implements BaseService {
         Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
         if (optionalProductShortEntity.isEmpty())
             return ERROR_CATEGORY_NOT_FOUND;
-        List<ProductEntity> productEntityList = productRepository.findByProductShortEntity(id);
+        List<ProductEntity> productEntityList = productRepository.findByProductShortEntityId(id);
         SUCCESS.setData(productEntityList);
         return SUCCESS;
     }
 
+
+    public ApiResponse updateProduct(long id, ProductEntity productEntity) {
+        Optional<ProductEntity> optionalProductEntity = productRepository.findById(id);
+        if (optionalProductEntity.isPresent()) {
+            ProductEntity updateId = optionalProductEntity.get();
+            Optional<ProductEntity> updateProduct = productRepository.findByName(productEntity.getName());
+
+            if (updateProduct.isPresent())
+                return USER_EXIST;
+
+            updateId.setName(productEntity.getName());
+            productRepository.save(updateId);
+        }
+        return SUCCESS_V2;
+    }
+
     public ApiResponse deleteProduct(long id) {
-//        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
-//        if (optionalProductShortEntity.isEmpty())
-//            return ERROR_CATEGORY_NOT_FOUND;
 
         Optional<ProductEntity> optionalProductEntity = productRepository.findById(id);
         if (optionalProductEntity.isPresent()) {
             productRepository.deleteById(id);
-            Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
-            if (optionalProductShortEntity.isPresent())
-                productShortRepository.deleteById(id);
+
             return SUCCESS_V2;
         }
         return ERROR_DELETE;

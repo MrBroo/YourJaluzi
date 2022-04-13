@@ -1,7 +1,6 @@
 package byfayzullayev.jaluzi.service.product;
 
 import byfayzullayev.jaluzi.entity.product.CategoryEntity;
-import byfayzullayev.jaluzi.entity.product.ProductEntity;
 import byfayzullayev.jaluzi.entity.product.ProductShortEntity;
 import byfayzullayev.jaluzi.model.receive.product.ProductShortReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
@@ -71,18 +70,26 @@ public class ProductShortService implements BaseService {
 
     }
 
+    public ApiResponse updateProductShort(long id, ProductShortEntity productShortEntity) {
+        Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
+        if (optionalProductShortEntity.isPresent()) {
+            ProductShortEntity updateId = optionalProductShortEntity.get();
+            Optional<ProductShortEntity> updateProductShort = productShortRepository.findByName(productShortEntity.getName());
+
+            if (updateProductShort.isPresent())
+                return USER_EXIST;
+
+            updateId.setName(productShortEntity.getName());
+            productShortRepository.save(updateId);
+        }
+        return SUCCESS_V2;
+    }
 
     public ApiResponse deleteProductShort(long id) {
-//        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
-//        if (optionalCategoryEntity.isEmpty())
-//            return ERROR_CATEGORY_NOT_FOUND;
 
         Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
         if (optionalProductShortEntity.isPresent()) {
-            productShortRepository.deleteById(id);
-            Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
-            if (optionalCategoryEntity.isPresent())
-            categoryRepository.deleteById(id);
+            productRepository.deleteById(id);
 
             return SUCCESS_V2;
         }

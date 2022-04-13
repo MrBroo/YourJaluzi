@@ -27,6 +27,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(userSignUpReceiveModel));
     }
 
+    @CrossOrigin
     @PostMapping("/login")
     public HttpEntity<?> login(@Valid @RequestBody UserSignInReceiveModel userSignInReceiveModel) {
         return ResponseEntity.ok(userService.login(userSignInReceiveModel));

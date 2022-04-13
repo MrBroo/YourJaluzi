@@ -1,5 +1,6 @@
 package byfayzullayev.jaluzi.controller;
 
+import byfayzullayev.jaluzi.entity.product.CategoryEntity;
 import byfayzullayev.jaluzi.model.receive.product.CategoryReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.service.product.CategoryService;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("api/yourjaluzi/category")
@@ -31,6 +31,12 @@ public class CategoryController {
     @GetMapping("/list")
     public HttpEntity<?> getCategoryList() {
         return ResponseEntity.ok(categoryService.getCategoryList());
+    }
+
+
+    @PutMapping("/edit/{id}")
+    public HttpEntity<?> updateCategory(@RequestBody CategoryEntity categoryEntity, @PathVariable("id") long id) {
+        return ResponseEntity.ok(categoryService.updateCategory(id, categoryEntity));
     }
 
     @DeleteMapping("/delete/{id}")

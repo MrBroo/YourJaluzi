@@ -40,6 +40,22 @@ public class PortfolioService implements BaseService {
         return SUCCESS_V2;
     }
 
+
+    public ApiResponse updatePortfolio(long id, PortfolioEntity portfolioEntity) {
+        Optional<PortfolioEntity> optionalPortfolioEntity = portfolioRepository.findById(id);
+        if (optionalPortfolioEntity.isPresent()) {
+            PortfolioEntity updateId = optionalPortfolioEntity.get();
+            Optional<PortfolioEntity> updatePortfolio = portfolioRepository.findByName(portfolioEntity.getName());
+
+            if (updatePortfolio.isPresent())
+                return USER_EXIST;
+
+            updateId.setName(portfolioEntity.getName());
+            portfolioRepository.save(updateId);
+        }
+        return SUCCESS_V2;
+    }
+
     public ApiResponse getPortfolioList() {
         SUCCESS.setData(portfolioRepository.findAll());
         return SUCCESS;
@@ -49,9 +65,9 @@ public class PortfolioService implements BaseService {
         Optional<PortfolioEntity> optionalPortfolioEntity = portfolioRepository.findById(id);
         if (optionalPortfolioEntity.isPresent()) {
             portfolioRepository.deleteById(id);
+
             return SUCCESS_V2;
         }
         return ERROR_DELETE;
-
     }
 }

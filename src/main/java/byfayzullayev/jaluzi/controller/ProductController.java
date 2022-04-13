@@ -1,5 +1,6 @@
 package byfayzullayev.jaluzi.controller;
 
+import byfayzullayev.jaluzi.entity.product.ProductEntity;
 import byfayzullayev.jaluzi.model.receive.product.ProductReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.service.product.ProductService;
@@ -27,13 +28,20 @@ public class ProductController {
         return ResponseEntity.ok(productService.addProduct(productReceiveModel));
 
     }
+
     @GetMapping("/list")
     public HttpEntity<?> getCourseList() {
         return ResponseEntity.ok(productService.getProductList());
 
     }
+
+    @PutMapping("/edit/{id}")
+    public HttpEntity<?> updateCategory(@RequestBody ProductEntity productEntity, @PathVariable("id") long id) {
+        return ResponseEntity.ok(productService.updateProduct(id, productEntity));
+    }
+
     @DeleteMapping("/delete/{id}")
-    public HttpEntity<?> deleteProduct(@PathVariable("id") long id ){
+    public HttpEntity<?> deleteProduct(@PathVariable("id") long id) {
         ApiResponse delete = productService.deleteProduct(id);
         return ResponseEntity.ok(delete);
 

@@ -1,5 +1,6 @@
 package byfayzullayev.jaluzi.controller;
 
+import byfayzullayev.jaluzi.entity.portfolio.PortfolioEntity;
 import byfayzullayev.jaluzi.model.receive.portfolio.PortfolioReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.service.product.PortfolioService;
@@ -28,6 +29,11 @@ public class PortfolioController {
     @GetMapping("/list")
     public HttpEntity<?> getPortfolioList() {
         return ResponseEntity.ok(portfolioService.getPortfolioList());
+    }
+
+    @PutMapping("/edit/{id}")
+    public HttpEntity<?> updateCategory(@RequestBody PortfolioEntity portfolioEntity, @PathVariable("id") long id) {
+        return ResponseEntity.ok(portfolioService.updatePortfolio(id, portfolioEntity));
     }
 
     @DeleteMapping("/delete/{id}")

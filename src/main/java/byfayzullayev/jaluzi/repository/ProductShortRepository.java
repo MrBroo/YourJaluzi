@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface ProductShortRepository extends JpaRepository<ProductShortEntity, Long> {
-
+    Optional<ProductShortEntity> findByName(String productShortEntity);
     List<ProductShortEntity> findByCategoryEntity(CategoryEntity categoryEntity);
 
     @Query(value = "select t.* from product_short_entity t where t.category_entity_id = ?1", nativeQuery = true)

@@ -44,15 +44,27 @@ public class CategoryService implements BaseService {
         return SUCCESS;
     }
 
+    public ApiResponse updateCategory(long id, CategoryEntity category) {
+        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
+        if (optionalCategoryEntity.isPresent()) {
+            CategoryEntity updateId = optionalCategoryEntity.get();
+            Optional<CategoryEntity> updateCategory = categoryRepository.findByName(category.getName());
+
+            if (updateCategory.isPresent())
+                return USER_EXIST;
+
+            updateId.setName(category.getName());
+            categoryRepository.save(updateId);
+        }
+        return SUCCESS_V2;
+    }
+
     public ApiResponse deleteCategory(long id) {
         Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
         if (optionalCategoryEntity.isPresent()) {
             categoryRepository.deleteById(id);
-            Optional<ProductShortEntity> optionalProductShortEntity = productShortRepository.findById(id);
-            if (optionalProductShortEntity.isPresent())
-            productShortRepository.deleteById(id);
 
-            return SUCCESS;
+            return SUCCESS_V2;
         }
         return ERROR_DELETE;
     }
