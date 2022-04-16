@@ -22,23 +22,30 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    @CrossOrigin
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PostMapping("/add")
     public HttpEntity<?> addCategory(@RequestBody CategoryReceiveModel categoryReceiveModel) {
         return ResponseEntity.ok(categoryService.addCategory(categoryReceiveModel));
 
     }
+
+    @CrossOrigin
     @GetMapping("/list")
     public HttpEntity<?> getCategoryList() {
         return ResponseEntity.ok(categoryService.getCategoryList());
     }
 
-
+    @CrossOrigin
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PutMapping("/edit/{id}")
     public HttpEntity<?> updateCategory(@RequestBody CategoryEntity categoryEntity, @PathVariable("id") long id) {
         return ResponseEntity.ok(categoryService.updateCategory(id, categoryEntity));
     }
 
+
+    @CrossOrigin
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public HttpEntity<?> deleteCategory(@PathVariable("id") long id) {
         ApiResponse delete = categoryService.deleteCategory(id);

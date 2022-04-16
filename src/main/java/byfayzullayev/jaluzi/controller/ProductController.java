@@ -22,6 +22,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @CrossOrigin
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PostMapping("/add")
     public HttpEntity<?> addProduct(@RequestBody ProductReceiveModel productReceiveModel) {
@@ -29,17 +30,22 @@ public class ProductController {
 
     }
 
+    @CrossOrigin
     @GetMapping("/list")
     public HttpEntity<?> getCourseList() {
         return ResponseEntity.ok(productService.getProductList());
 
     }
 
+    @CrossOrigin
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PutMapping("/edit/{id}")
     public HttpEntity<?> updateCategory(@RequestBody ProductEntity productEntity, @PathVariable("id") long id) {
         return ResponseEntity.ok(productService.updateProduct(id, productEntity));
     }
 
+    @CrossOrigin
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public HttpEntity<?> deleteProduct(@PathVariable("id") long id) {
         ApiResponse delete = productService.deleteProduct(id);

@@ -22,6 +22,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public HttpEntity<?> addUser(@Valid @RequestBody UserSignUpReceiveModel userSignUpReceiveModel) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(userSignUpReceiveModel));

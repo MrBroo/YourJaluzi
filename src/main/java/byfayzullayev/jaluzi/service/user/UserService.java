@@ -54,7 +54,7 @@ public class UserService implements BaseService {
         else
             userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(userSignUpReceiveModel.getRoleEnum())));
         userRepository.save(userEntity);
-        return SUCCESS;
+        return SUCCESS_V2;
     }
 
     public ApiResponse login(
