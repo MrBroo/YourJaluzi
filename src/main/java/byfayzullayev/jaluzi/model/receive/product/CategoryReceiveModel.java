@@ -7,4 +7,6 @@ import lombok.Data;
 public class CategoryReceiveModel {
     @JsonProperty("name")
     private String name;
+    private String contentType;
+    private String base64;
 }

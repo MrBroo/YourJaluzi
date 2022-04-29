@@ -37,6 +37,12 @@ public class ProductController {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProductListById(@PathVariable ("id") long id){
+        ApiResponse list = productService.getProductList(id);
+        return ResponseEntity.ok(list);
+    }
+
     @CrossOrigin
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PutMapping("/edit/{id}")
