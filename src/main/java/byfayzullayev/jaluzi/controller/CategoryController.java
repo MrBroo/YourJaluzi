@@ -37,6 +37,13 @@ public class CategoryController {
     }
 
     @CrossOrigin
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProductListById(@PathVariable("id") long id) {
+        ApiResponse list = categoryService.getCategoryList(id);
+        return ResponseEntity.ok(list);
+    }
+
+    @CrossOrigin
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PutMapping("/edit/{id}")
     public HttpEntity<?> updateCategory(@RequestBody CategoryEntity categoryEntity, @PathVariable("id") long id) {

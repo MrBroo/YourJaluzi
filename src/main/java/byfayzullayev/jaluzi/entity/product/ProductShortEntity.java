@@ -27,6 +27,7 @@ public class ProductShortEntity extends BaseEntity {
     @ManyToOne
     private CategoryEntity categoryEntity;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "productShortEntity", cascade = CascadeType.ALL)
     private ProductEntity productEntity;
 

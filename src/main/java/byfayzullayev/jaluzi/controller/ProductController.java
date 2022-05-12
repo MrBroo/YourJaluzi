@@ -37,8 +37,9 @@ public class ProductController {
 
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProductListById(@PathVariable ("id") long id){
+    public ResponseEntity<?> getProductListById(@PathVariable("id") long id) {
         ApiResponse list = productService.getProductList(id);
         return ResponseEntity.ok(list);
     }

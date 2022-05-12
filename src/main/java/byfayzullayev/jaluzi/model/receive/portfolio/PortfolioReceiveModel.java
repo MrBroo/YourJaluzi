@@ -8,5 +8,4 @@ public class PortfolioReceiveModel {
     private String name;
     private String base64;
     private String contentType;
-    private Integer data;
 }

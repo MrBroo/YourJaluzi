@@ -50,6 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(jwtTokenFilter, BasicAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/api/yourjaluzi/user/*").permitAll()
+                .antMatchers("/api/yourjaluzi/images/product/*").permitAll()
+                .antMatchers("/api/yourjaluzi/clients/*").permitAll()
                 .antMatchers("/api/yourjaluzi/category/list").permitAll()
                 .antMatchers("/api/yourjaluzi/portfolio/list").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/yourjaluzi/category/shortProduct/*").permitAll()

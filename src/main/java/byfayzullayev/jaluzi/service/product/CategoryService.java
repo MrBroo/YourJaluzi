@@ -39,6 +39,13 @@ public class CategoryService implements BaseService {
         return SUCCESS;
     }
 
+    public ApiResponse getCategoryList(long id) {
+        Optional<CategoryEntity> categoryEntityList = categoryRepository.findById(id);
+        SUCCESS.setData(categoryEntityList);
+        return SUCCESS;
+    }
+
+
     public ApiResponse updateCategory(long id, CategoryEntity category) {
         Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
         if (optionalCategoryEntity.isPresent()) {
