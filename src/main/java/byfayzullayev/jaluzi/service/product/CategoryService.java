@@ -40,8 +40,8 @@ public class CategoryService implements BaseService {
     }
 
     public ApiResponse getCategoryList(long id) {
-        Optional<CategoryEntity> categoryEntityList = categoryRepository.findById(id);
-        SUCCESS.setData(categoryEntityList);
+        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(id);
+        SUCCESS.setData(optionalCategoryEntity);
         return SUCCESS;
     }
 

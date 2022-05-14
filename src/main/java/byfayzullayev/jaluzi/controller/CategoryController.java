@@ -38,7 +38,7 @@ public class CategoryController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProductListById(@PathVariable("id") long id) {
+    public ResponseEntity<?> getCategoryList(@PathVariable("id") long id) {
         ApiResponse list = categoryService.getCategoryList(id);
         return ResponseEntity.ok(list);
     }
