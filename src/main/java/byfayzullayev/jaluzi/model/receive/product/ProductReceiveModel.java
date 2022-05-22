@@ -10,9 +10,11 @@ import java.util.List;
 public class ProductReceiveModel {
     private String name;
     private String base64;
-    private String price;
+    private Integer price;
     private String sunProtection;
     private String about;
+    private String category;
+    private String color;
     private String contentType;
     @JsonProperty("productShort_id")
     private long productShortId;

@@ -20,6 +20,8 @@ public class ProductShortEntity extends BaseEntity {
     private String name;
     private String imageUrl;
     private String price;
+    private String category;
+    private String color;
     private String sunProtection;
 
 

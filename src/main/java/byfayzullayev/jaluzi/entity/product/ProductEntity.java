@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -16,8 +17,11 @@ import javax.persistence.OneToOne;
 public class ProductEntity extends BaseEntity {
     private String name;
     private String imageUrl;
-    private String price;
+    private Integer price;
+    private String category;
+    private String color;
     private String sunProtection;
+    @Column(columnDefinition="text")
     private String about;
 
     @JsonIgnore

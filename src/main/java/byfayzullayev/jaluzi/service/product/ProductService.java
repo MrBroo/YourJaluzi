@@ -46,6 +46,8 @@ public class ProductService implements BaseService {
         productEntity.setName(productReceiveModel.getName());
         productEntity.setImageUrl(imageUrl);
         productEntity.setPrice(productReceiveModel.getPrice());
+        productEntity.setCategory(productReceiveModel.getCategory());
+        productEntity.setColor(productReceiveModel.getColor());
         productEntity.setSunProtection(productReceiveModel.getSunProtection());
         productEntity.setAbout(productReceiveModel.getAbout());
         productRepository.save(productEntity);

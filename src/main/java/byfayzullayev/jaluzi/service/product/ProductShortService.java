@@ -43,6 +43,8 @@ public class ProductShortService implements BaseService {
         ProductShortEntity productShortEntity = new ProductShortEntity();
         productShortEntity.setCategoryEntity(optionalCategoryEntity.get());
         productShortEntity.setName(productShortReceiveModel.getName());
+        productShortEntity.setCategory(productShortReceiveModel.getCategory());
+        productShortEntity.setColor(productShortReceiveModel.getColor());
         productShortEntity.setImageUrl(imageUrl);
         productShortEntity.setPrice(productShortReceiveModel.getPrice());
         productShortEntity.setSunProtection(productShortReceiveModel.getSunProtection());
