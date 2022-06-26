@@ -49,7 +49,8 @@ public class UserService implements BaseService {
         userEntity.setPhoneNumber(userSignUpReceiveModel.getPhoneNumber());
         userEntity.setUsername(userSignUpReceiveModel.getUsername());
         userEntity.setPassword(passwordEncoder.encode(userSignUpReceiveModel.getPassword()));
-        userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(userSignUpReceiveModel.getRoleEnum())));
+        if (userSignUpReceiveModel.getRoleEnum() == null)
+            userEntity.setRoleEntityList(List.of(roleRepository.findByRoleEnum(RoleEnum.SUPER_ADMIN)));
         userRepository.save(userEntity);
         return SUCCESS_V2;
     }
