@@ -1,5 +1,6 @@
 package byfayzullayev.jaluzi.service.user;
 
+import byfayzullayev.jaluzi.entity.role.RoleEntity;
 import byfayzullayev.jaluzi.entity.role.RoleEnum;
 import byfayzullayev.jaluzi.entity.user.UserEntity;
 import byfayzullayev.jaluzi.model.receive.user.UserSignInReceiveModel;
