@@ -23,7 +23,6 @@ public class PortfolioController {
     }
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PostMapping("/add")
     public HttpEntity<?> addPortfolio(@RequestBody PortfolioReceiveModel portfolioReceiveModel) {
         return ResponseEntity.ok(portfolioService.addPortfolio(portfolioReceiveModel));
@@ -36,14 +35,12 @@ public class PortfolioController {
     }
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PutMapping("/edit/{id}")
     public HttpEntity<?> updateCategory(@RequestBody PortfolioEntity portfolioEntity, @PathVariable("id") long id) {
         return ResponseEntity.ok(portfolioService.updatePortfolio(id, portfolioEntity));
     }
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public HttpEntity<?> deletePortfolio(@PathVariable long id) {
 

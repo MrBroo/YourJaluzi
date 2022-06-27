@@ -22,7 +22,7 @@ public class ProductShortController {
     }
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
+//    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<?> addProductShort(
             @RequestBody ProductShortReceiveModel productShortReceiveModel) {
@@ -44,7 +44,6 @@ public class ProductShortController {
     }
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PutMapping("/edit/{id}")
     public HttpEntity<?> updateProductShort(@RequestBody ProductShortEntity productShortEntity, @PathVariable("id") long id) {
         return ResponseEntity.ok(productShortService.updateProductShort(id, productShortEntity));
@@ -52,7 +51,6 @@ public class ProductShortController {
 
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteProductShort(
             @PathVariable("id") long id

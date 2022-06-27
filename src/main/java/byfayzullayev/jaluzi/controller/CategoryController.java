@@ -23,7 +23,6 @@ public class CategoryController {
     }
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PostMapping("/add")
     public HttpEntity<?> addCategory(@RequestBody CategoryReceiveModel categoryReceiveModel) {
         return ResponseEntity.ok(categoryService.addCategory(categoryReceiveModel));
