@@ -1,19 +1,18 @@
-package byfayzullayev.jaluzi.entity.clients;
+package byfayzullayev.jaluzi.entity.portfolio;
 
 import byfayzullayev.jaluzi.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-public class ClientEntity extends BaseEntity {
-
+public class PortfolioFrontEntity extends BaseEntity {
     private String name;
-    private String phoneNumber;
-    private String variant;
-
+    private String about;
+    private String imageUrl;
 }

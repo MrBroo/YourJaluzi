@@ -43,7 +43,6 @@ public class CategoryController {
     }
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @PutMapping("/edit/{id}")
     public HttpEntity<?> updateCategory(@RequestBody CategoryEntity categoryEntity, @PathVariable("id") long id) {
         return ResponseEntity.ok(categoryService.updateCategory(id, categoryEntity));
@@ -51,7 +50,6 @@ public class CategoryController {
 
 
     @CrossOrigin
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('SUPER_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public HttpEntity<?> deleteCategory(@PathVariable("id") long id) {
         ApiResponse delete = categoryService.deleteCategory(id);
