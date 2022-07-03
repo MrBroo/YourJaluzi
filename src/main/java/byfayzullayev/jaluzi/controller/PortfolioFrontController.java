@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/yourjaluzi/portfolioFront")
+@RequestMapping("api/yourjaluzi/portfoliofront")
 public class PortfolioFrontController {
 
     private final PortfolioFrontService portfolioFrontService;
@@ -22,14 +22,21 @@ public class PortfolioFrontController {
 
     @CrossOrigin
     @PostMapping("/add")
-    public HttpEntity<?> addPortfolio(@RequestBody PortfolioFrontReceiveModel portfolioFrontReceiveModel) {
+    public HttpEntity<?> addPortfolioFront(@RequestBody PortfolioFrontReceiveModel portfolioFrontReceiveModel) {
         return ResponseEntity.ok(portfolioFrontService.addPortfolioFront(portfolioFrontReceiveModel));
     }
 
     @CrossOrigin
     @GetMapping("/list")
-    public HttpEntity<?> getPortfolioList() {
+    public HttpEntity<?> getPortfolioFrontList() {
         return ResponseEntity.ok(portfolioFrontService.getPortfolioFrontList());
+    }
+
+    @CrossOrigin
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPortfolioFrontId(@PathVariable("id") long id) {
+        ApiResponse list = portfolioFrontService.getPortfolioFrontId(id);
+        return ResponseEntity.ok(list);
     }
 
     @CrossOrigin

@@ -2,6 +2,7 @@ package byfayzullayev.jaluzi.service.product;
 
 import byfayzullayev.jaluzi.entity.portfolio.PortfolioEntity;
 import byfayzullayev.jaluzi.entity.portfolio.PortfolioFrontEntity;
+import byfayzullayev.jaluzi.entity.product.CategoryEntity;
 import byfayzullayev.jaluzi.model.receive.portfolio.PortfolioFrontReceiveModel;
 import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.repository.PortfolioFrontRepository;
@@ -34,6 +35,7 @@ public class PortfolioFrontService implements BaseService {
 
         PortfolioFrontEntity portfolioFrontEntity = new PortfolioFrontEntity();
         portfolioFrontEntity.setName(portfolioFrontReceiveModel.getName());
+        portfolioFrontEntity.setAbout(portfolioFrontReceiveModel.getAbout());
         portfolioFrontEntity.setImageUrl(imageUrl);
         portfolioFrontRepository.save(portfolioFrontEntity);
 
@@ -45,7 +47,7 @@ public class PortfolioFrontService implements BaseService {
         Optional<PortfolioFrontEntity> optionalPortfolioFrontEntity = portfolioFrontRepository.findById(id);
         if (optionalPortfolioFrontEntity.isPresent()) {
             PortfolioFrontEntity updateId = optionalPortfolioFrontEntity.get();
-            Optional<PortfolioEntity> updatePortfolio = portfolioFrontRepository.findByName(portfolioFrontEntity.getName());
+            Optional<PortfolioFrontEntity> updatePortfolio = portfolioFrontRepository.findByName(portfolioFrontEntity.getName());
 
             if (updatePortfolio.isPresent())
                 return USER_EXIST;
@@ -58,6 +60,13 @@ public class PortfolioFrontService implements BaseService {
 
     public ApiResponse getPortfolioFrontList() {
         SUCCESS.setData(portfolioFrontRepository.findAll());
+        return SUCCESS;
+    }
+
+
+    public ApiResponse getPortfolioFrontId(long id) {
+        Optional<PortfolioFrontEntity> optionalPortfolioFrontEntity = portfolioFrontRepository.findById(id);
+        SUCCESS.setData(optionalPortfolioFrontEntity);
         return SUCCESS;
     }
 

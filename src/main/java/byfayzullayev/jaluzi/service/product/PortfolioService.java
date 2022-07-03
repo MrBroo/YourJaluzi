@@ -33,6 +33,7 @@ public class PortfolioService implements BaseService {
 
         PortfolioEntity portfolioEntity = new PortfolioEntity();
         portfolioEntity.setName(portfolioReceiveModel.getName());
+        portfolioEntity.setAbout(portfolioReceiveModel.getAbout());
         portfolioEntity.setImageUrl(imageUrl);
         portfolioRepository.save(portfolioEntity);
 

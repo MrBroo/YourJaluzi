@@ -9,7 +9,6 @@ import byfayzullayev.jaluzi.model.response.ApiResponse;
 import byfayzullayev.jaluzi.repository.RoleRepository;
 import byfayzullayev.jaluzi.repository.UserRepository;
 import byfayzullayev.jaluzi.service.base.BaseService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
